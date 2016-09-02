@@ -1,0 +1,75 @@
+<span ng-controller="OngoingController">
+     <div style="float: right;" class="col-md-1">
+         <button class='btn btn-success custom_color' style="float:right" ng-click="refresh()"><em
+                 class="fa fa-refresh"></em></button>
+     </div>
+<h3>Details</h3>
+<div class="container-fluid">
+
+    <!-- START DATATABLE 2 -->
+
+    <div class="panel panel-default">
+
+        <div class="form-group">
+            <label class="control-label">Pick Up Details</label>
+            <input type="text" name="team_name" required="required" class="form-control"
+                   ng-model="pickup"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Drop Off Details</label>
+            <input type="text" name="team_name" required="required" class="form-control"
+                   ng-model="data.dropoff"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Payment Mode</label>
+            <input type="text" name="team_name" required="required" class="form-control"
+                   ng-model="data.truckNumber" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Truck No.</label>
+            <input type="text" name="team_name" required="required" class="form-control"
+                   ng-model="data.paymentMode"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Notes</label>
+            <input type="text" name="team_name" required="required" class="form-control"
+                   ng-model="data.jobnote"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Halt Locations</label>
+            <input type="text" name="team_name" required="required" class="form-control"
+                   ng-model="data.truckernote"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Promo Code</label>
+            <input type="text" name="team_name" required="required" class="form-control"
+                   ng-model="data.promoCode"/>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
+                    <label class="control-label">Consignment</label>
+                    <input type="text" name="team_name" required="required" class="form-control"
+                           ng-src="{{data.consigmentNote || 'app/img/no_image.png'}}" />
+                </div>
+                <div class="col-sm-6">
+                    <label class="control-label">POD</label>
+                    <input type="text" name="team_name" required="required" class="form-control"
+                           ng-src="{{data.pod || 'app/img/no_image.png'}}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <!-- END DATATABLE 2 -->
+    <script type="text/ng-template" id="modalDialog">
+        <img ng-src="{{pop.image}}" ng-model="pop.image" style="height:400px;width:400px"/>
+        <br><br>
+        <center>
+            <button class="btn btn-sm btn-primary"><a target="_self" href="{{pop.image}}" download="image.png"
+                                                      style="text-decoration: none;color:white"> Download </a></button>
+        </center></script>
+    </div>
+    </span>

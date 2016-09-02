@@ -1,0 +1,68 @@
+<span ng-controller="typeofcargoController">
+<h3>Type Of Cargo
+    <small>Get all Cargo List</small>
+</h3>
+    <div>
+        <button style="float: right; background-color: #5d9cec; color:white; border-radius: 12px;padding-bottom: 5px"
+                ng-click="addCargo()">Add Cargo</button>
+    </div>
+ <div><br><br></div>
+    <!-- START DATATABLE 2 -->
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-lg-12">
+            <div class="panel panel-default"  ng-class="{'whirl standard' : loading }">
+                <div class="table-responsive">
+                    <table id="datatable12" class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th style="min-width: 150px;text-align:center">Sr no.</th>
+                            <th style="min-width: 150px;text-align:center">Id</th>
+                            <th style="min-width: 150px;text-align:center">Type Cargo Name</th>
+                            <th style="min-width: 150px;text-align:center">Change Cargo Name</th>
+                            <th style="min-width: 150px;text-align:center">Status</th>
+                            <th style="min-width: 150px;text-align:center">Delete</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="data in list ">
+
+                            <td style="white-space:nowrap;"><a class="link_color">{{$index + 1}}</a>
+                            </td>
+                            <td style="white-space:nowrap;"><a class="link_color" >{{data.id}}</a>
+                            <td style="white-space:nowrap;"><a class="link_color text-capitalize">{{data.typeCargoName | lowercase}}</a></td>
+                            </td>
+                            <td><div><button ng-click="update(data.id,data.typeCargoName)" title="Edit" class="btn btn-sm btn-success pull-ext" style="width: 30px;">
+                                <em class="fa fa-pencil-square-o"></em>
+                            </button></div></td>
+                            <td style="white-space:nowrap;"><a class="link_color text-capitalize">{{data.status| lowercase}}</a>
+                            </td><td>
+                            <div>
+                                <div ng-switch="data.status">
+                                    <button ng-switch-when="ACTIVATE" ng-click="changeStatus(data.status,data.id)"
+                                            title="Delete"
+                                            class="btn btn-sm btn-success pull-ext" style="width: 30px;">
+                                        <i class="fa fa-trash-o"></i>
+                                    </button>
+                                    <button ng-switch-when="DEACTIVATE" ng-click="changeStatus(data.status,data.id)" title="Activate"
+                                            class="btn btn-sm btn-success pull-ext">
+                                        <em class="fa fa-unlock"></em>
+                                    </button>
+                                </div>
+                                </button>
+                            </div>
+
+                            <!--<td style="white-space:nowrap;"><a class="link_color">{{data.truckcolor}}</a>-->
+                            <!--</td>-->
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END DATATABLE 2 -->
+
+</div>
+    </span>

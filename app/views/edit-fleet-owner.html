@@ -1,0 +1,144 @@
+<div class="ngdialog-message" ng-controller="EditFleetController">
+    <center><h3 style="color: black">Edit Fleet Owner's Details</h3></center>
+
+    <form id="add-service" ng-submit="EditService(fleet_form)">
+        <div ng-class="{'whirl standard' : loading }" class="panel panel-default"
+             style="width:70%; margin-left: 15%;border-color:blue">
+
+            <div style="padding-left: 20px; padding-right:20px; margin-top:2%;" class="form-group">
+                <label class="control-label" style="padding-left: 20px;">Area of Operation*</label>
+
+                <div>
+
+                    <input id="fo_aoo" type="text" class="form-control " required="required"
+                           style="text-overflow: ellipsis;position: relative;overflow: hidden;white-space: nowrap;width: 96%; margin: 2% 2% 0 2%;margin-top: 0px"
+                           ng-click="collapsed1=!collapsed1" placeholder="Area Of Operation" ng-model="selected_state1"
+                           readonly/>
+
+                    <div style="float:right; position: relative;"><img
+                            style="position: absolute;right: 10px;top: 10px;"></div>
+                    <div class="full_width"
+                         style="background-color: white; width:96%;margin-top: 0px;margin-bottom: 15px; margin-left:2%;">
+                        <div ng-if="collapsed1" style="overflow-y: scroll;height: 200px;">
+                            <div class="half_width" ng-repeat="state in indian_states" placeholder="State">
+                                <!--<label class="control-label">Area of Operation</label>-->
+                                <input class="checkbox1" name="{{state.name}}" ng-model="state.checked"
+                                       ng-change="selectedOrNot(state.value, state.checked,$index,state.name)"
+                                       type="checkbox" style="margin: 10px 10px 0 10px;height: 15px;width: 15px;"
+                                       ng-checked="state.selected"/>
+                                <span style="margin: 7px 0px 0 0px;" class="checkbox_p">{{state.name}}</span> <br></div>
+                        </div>
+                    </div>
+
+                    <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                        <label class="control-label">No of Trucks</label>
+                        <input type="text" class="form-control"
+                               ng-model="fleet_form.numberOfTrucks"/>
+                    </div>
+                    <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                        <label class="control-label">Company Name*</label>
+                        <input type="text" required="required" class="form-control"
+                               ng-model="fleet_form.companyName"/>
+                    </div>
+                    <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                        <label class="control-label">Address</label>
+                        <input type="text" class="form-control"
+                               ng-model="fleet_form.address"/>
+                    </div>
+                    <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                        <label class="control-label">State</label>
+                        <input type="text" class="form-control"
+                               ng-model="fleet_form.state"/>
+                    </div>
+                    <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                        <label class="control-label">City</label>
+                        <input type="text" class="form-control"
+                               ng-model="fleet_form.city"/>
+                    </div>
+                    <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                        <label class="control-label">Zip Code</label>
+                        <input type="text" class="form-control"
+                               ng-model="fleet_form.pinCode"/>
+                    </div>
+                    <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                        <label class="control-label">Type Of Cargo Handled</label>
+                        <div>
+                            <input id="cargo" type="text"
+                                   class="form-control ng-pristine ng-valid ng-valid-required ng-touched"
+                                   style="text-overflow: ellipsis;position: relative;overflow: hidden;white-space: nowrap;width: 100%"
+                                   ng-click="collapsed1=!collapsed1" placeholder="Type Of Cargo "
+                                   ng-model="selected_cargo1"
+                                   readonly/>
+
+                        </div>
+                        <div class="full_width"
+                             style="background-color: white; width:100%;margin-top: 0px;margin-bottom: 15px">
+                            <div ng-if="collapsed1" style="overflow-y: scroll;height: 100px;">
+                                <div class="half_width" ng-repeat="data in cargoName" placeholder="Cargo Name">
+
+                                    <input class="checkbox1" name="{{data.typeCargoName}}" ng-model="data.checked"
+                                           ng-change="selected_cargo(data._id, data.checked,$index,data.name)"
+                                           type="checkbox" style="margin: 10px 10px 0 10px; height: 15px;width: 15px"
+                                           ng-checked="data.selected"/>
+                                    <span style="margin: 7px 0px 0 0px;"
+                                          class="checkbox_p">{{data.typeCargoName}}</span> <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                        <label class="control-label">Pan Card</label>
+                        <input class="form-control"
+                               ng-model="fleet_form.panCardNumber"/>
+                    </div>
+                    <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                        <label class="control-label">Trade License No.</label>
+                        <input type="text" class="form-control"
+                               ng-model="fleet_form.tradeLicenceNumber"/>
+                    </div>
+
+                    <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                        <label class="control-label">Trade License Image </label>
+                        <img class="form-control" ng-src="{{fleet_form.tradeLicence}}" style="width:150px;height:150px"
+                             id="default"/>
+                        <img style="width:150px;height:150px" class="form-control" id="default1"/>
+                    </div>
+                    <div>
+                        <input type="file" accept="image/*"
+                               onchange="angular.element(this).scope().file_to_upload(this.files,'image')"
+                               data-class-button="btn btn-default"
+                               data-classinput="form-control inline" nv-file-select="" uploader="uploader"
+                               class="upload" id="fleetimage"/>
+                    </div>
+
+
+                    <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                        <label class="control-label">Bank Name</label>
+                        <input type="text" class="form-control"
+                               ng-model="fleet_form.bankName"/>
+                    </div>
+                    <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                        <label class="control-label">Bank Account NO.</label>
+                        <input type="text" class="form-control"
+                               ng-model="fleet_form.accountNumber"/>
+                    </div>
+
+
+                    <input type="hidden" ng-model="editFleet.id_pop"/>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="panel panel-default" style="width:70%; margin-left: 15%;border-color:blue">
+            <div style="margin-top: 2%;margin-bottom: 2%">
+                <center>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" ng-click="close()" class="btn btn-default">Cancel
+                    </button>
+                </center>
+            </div>
+        </div>
+    </form>
+</div>

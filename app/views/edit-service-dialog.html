@@ -1,0 +1,49 @@
+<div class="ngdialog-message" ng-controller="EditServiceController">
+    <h3>Edit Service</h3>
+
+    <form method="post" validate-form="" novalidate="" ng-submit="EditService(updateVal)" id="add-service">
+        <div class="panel panel-default">
+
+            <div ng-show="successMsg" class="alert alert-success text-center">{{successMsg}}</div>
+            <div ng-show="errorMsg" class="alert alert-danger text-center">{{errorMsg}}</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <!--{{updateVal}}-->
+
+                    <label class="control-label">Category</label>
+                    <select name="type" class="form-control" ng-model="updateVal" required="required">
+                        <option ng-repeat="option in options" ng-value="option.value"
+                                ng-selected="option.value == updateVal">{{option.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Service Name</label>
+                    <input type="text" name="team_name" required="required" class="form-control"
+                           ng-model="editService.servicename"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Cost(&#163;)</label>
+                    <input type="text" name="team_name" required="required" class="form-control"
+                           ng-model="editService.cost" data-parsley-type="number"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Time(min)</label>
+                    <input type="text" name="team_name" required="required" class="form-control"
+                           ng-model="editService.servicetime" data-parsley-type="number"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Description</label>
+                    <textarea type="text" name="team_name" required="required" class="form-control"
+                              ng-model="editService.description"></textarea>
+                </div>
+                <input type="hidden" ng-model="editService.id_pop">
+            </div>
+            <div class="panel-footer">
+                <button type="submit" class="btn btn-info">Submit</button>
+                <button type="button" ng-click="closeThisDialog(0)" class="btn btn-default">Cancel
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

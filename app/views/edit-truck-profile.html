@@ -1,0 +1,238 @@
+<div ng-controller="EditTruckProfileController">
+    <center><h3 style="color: black">Edit Truck Profile</h3></center>
+
+    <form id="add-service" ng-submit="EditService(truck_form)">
+        <div ng-class="{'whirl standard' : loading }" class="panel panel-default" style="width:70%; margin-left: 15%;border-color:blue">
+
+            <div style="padding-left: 20px; padding-right:20px; margin-top: 2%" class="form-group">
+                <label class="control-label">Truck name*</label>
+                <input type="text"  class="form-control"
+                       ng-model="truck_form.truckName"/>
+            </div>
+            <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                <label class="control-label">Truck number*</label>
+                <input type="text"  class="form-control"
+                       ng-model="truck_form.truckNumber"/>
+            </div>
+            <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                <label class="control-label">Truck type*</label>
+                <select  class="form-control" ng-model="truck_form.typeTruckName" required="" ng-change="typeName_to_Id()">
+                    <!--<option value="" disabled="disabled" style="display: none;">{{truck_form.typeTruckName}}</option>-->
+                    <option ng-repeat="data in typeTruckList" ng-value="data._id" ng-selected="data.typeTruckName == truck_form.typeTruckName">{{data.typeTruckName}}</option>
+                </select>
+            </div>
+
+            <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                <label class="control-label">Truck Model</label>
+                <input type="text"  class="form-control"
+                       ng-model="truck_form.model"/>
+            </div>
+            <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                <label class="control-label">Year Of Manufacturing </label>
+                <input type="text"  class="form-control"
+                       ng-model="truck_form.manufactureDate"/>
+            </div>
+            <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                <label class="control-label">Truck OEM</label>
+                <input type="text"  class="form-control"
+                       ng-model="truck_form.truckoem"/>
+            </div>
+            <!--=============================-->
+            <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                <label class="control-label">Tax Token Validity</label>
+                <!--<input type="text" class="form-control"-->
+                       <!--ng-model="truck_form.ttValidity"/>-->
+                <div class="form-group">
+                    <div class="col-lg-6 padding-left" style="margin-top:14px">
+                        <p class="input-group" ng-controller="DatepickerDemoCtrl">
+                            <input placeholder="{{truck_form.ttValidity | date:'yyyy-MM-dd' }}" type="text" datepicker-popup="{{format}}"
+                                   ng-model="x.startTime" is-open="opened"
+                                   style="background-color: #fff;cursor: pointer;"
+                                   min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"
+                                   date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"
+                                   class="form-control" readonly/>
+                                         <span class="input-group-btn">
+                                           <button type="button" ng-click="open($event)" class="btn btn-default">
+                                               <em class="fa fa-calendar"></em>
+                                           </button>
+                                         </span>
+                        </p>
+                    </div>
+                </div>
+                <!--==================================-->
+            </div><br><br>
+
+            <div class="form-group" >
+                <label class="control-label" style="margin-left: 20px;">Tax Token Doc</label>
+
+                <br>
+                <!---->
+                <div class="form-group" style="text-align: left; margin-left:90px">
+                    <img class='uploaded_img' ng-src={{truck_form.ttDoc}} style="width:200px;height:200px"
+                         id="tt_image"/>
+                </div>
+                <div class="fileUpload btn btn-info" style="text-align: left; ">
+                    <!--<span>Upload</span>-->
+                    <input filestyle="" type="file" image="image"
+                           onchange="angular.element(this).scope().file_to_upload(this.files,1)"
+                           data-button-text="Single" data-class-button="btn btn-default"
+                           data-classinput="form-control inline" nv-file-select="" uploader="uploader"
+                           class="form-control upload"/>
+                </div>
+            </div>
+
+
+            <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                <label class="control-label">National Permit Validity</label>
+                <!--<input type="text"  class="form-control"-->
+                       <!--ng-model="truck_form.npValidity"/>-->
+                <div class="form-group">
+                    <div class="col-lg-6 padding-left" style="margin-top:14px">
+                        <p class="input-group" ng-controller="DatepickerDemoCtrl">
+                            <input placeholder="{{truck_form.npValidity | date:'yyyy-MM-dd' }}" type="text" datepicker-popup="{{format}}"
+                                   ng-model="x.startTime" is-open="opened"
+                                   style="background-color: #fff;cursor: pointer;"
+                                   min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"
+                                   date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"
+                                   class="form-control" readonly/>
+                                         <span class="input-group-btn">
+                                           <button type="button" ng-click="open($event)" class="btn btn-default">
+                                               <em class="fa fa-calendar"></em>
+                                           </button>
+                                         </span>
+                        </p>
+                    </div>
+                </div>
+            </div><br><br>
+            <div class="form-group" >
+                <label class="control-label" style="margin-left: 20px;" >National Permit Doc</label>
+
+                <br>
+
+                <div class="form-group" style="text-align: left; margin-left:90px">
+                    <img class='uploaded_img' ng-src={{truck_form.npDoc}} style="width:200px;height:200px"
+                         id="np_image"/>
+                </div><div class="fileUpload btn btn-info">
+                <!--<span>Upload</span>-->
+                <input filestyle="" type="file" image="image"
+                       onchange="angular.element(this).scope().file_to_upload(this.files,2)"
+                       data-button-text="Single" data-class-button="btn btn-default"
+                       data-classinput="form-control inline" nv-file-select="" uploader="uploader"
+                       class="form-control upload"/>
+            </div>
+            </div>
+
+            <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                <label class="control-label">Fitness Certificate Validity</label>
+                <!--<input type="text"  class="form-control"-->
+                       <!--ng-model="truck_form.fcValidity"/>-->
+                <div class="form-group">
+                    <div class="col-lg-6 padding-left" style="margin-top:14px">
+                        <p class="input-group" ng-controller="DatepickerDemoCtrl">
+                            <input placeholder="{{truck_form.fcValidity | date:'yyyy-MM-dd' }}" type="text" datepicker-popup="{{format}}"
+                                   ng-model="x.startTime" is-open="opened"
+                                   style="background-color: #fff;cursor: pointer;"
+                                   min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"
+                                   date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"
+                                   class="form-control" readonly/>
+                                         <span class="input-group-btn">
+                                           <button type="button" ng-click="open($event)" class="btn btn-default">
+                                               <em class="fa fa-calendar"></em>
+                                           </button>
+                                         </span>
+                        </p>
+                    </div>
+                </div>
+            </div><br><br>
+
+            <div class="form-group" >
+                <label class="control-label" style="margin-left: 20px;">Fitness Certificate Doc</label>
+
+                <br>
+                <!---->
+                <div class="form-group" style="text-align: left; margin-left:90px">
+                    <img class='uploaded_img' ng-src={{truck_form.fcDoc}} style="width:200px;height:200px"
+                         id="fc_image"/>
+                </div>
+                <div class="fileUpload btn btn-info">
+                    <!--<span>Upload</span>-->
+                    <input filestyle="" type="file" image="image"
+                           onchange="angular.element(this).scope().file_to_upload(this.files,3)"
+                           data-button-text="Single" data-class-button="btn btn-default"
+                           data-classinput="form-control inline" nv-file-select="" uploader="uploader"
+                           class="form-control upload"/>
+                </div>
+            </div>
+
+            <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                <label class="control-label">Registration Validity</label>
+                <!--<input type="text"  class="form-control"-->
+                       <!--ng-model="truck_form.rcValidity"/>-->
+                <div class="form-group">
+                    <div class="col-lg-6 padding-left" style="margin-top:14px">
+                        <p class="input-group" ng-controller="DatepickerDemoCtrl">
+                            <input placeholder="{{truck_form.rcValidity | date:'yyyy-MM-dd' }}" type="text" datepicker-popup="{{format}}"
+                                   ng-model="x.startTime" is-open="opened"
+                                   style="background-color: #fff;cursor: pointer;"
+                                   min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"
+                                   date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"
+                                   class="form-control" readonly/>
+                                         <span class="input-group-btn">
+                                           <button type="button" ng-click="open($event)" class="btn btn-default">
+                                               <em class="fa fa-calendar"></em>
+                                           </button>
+                                         </span>
+                        </p>
+                    </div>
+                </div>
+            </div><br><br>
+
+            <div class="form-group" >
+                <label class="control-label" style="margin-left: 20px;">Registration Doc</label>
+
+                <br>
+                <!---->
+                <div class="form-group" style="text-align: left; margin-left:90px">
+                    <img class='uploaded_img' ng-src={{truck_form.rcDoc}} style="width:200px;height:200px"
+                         id="rc_image"/>
+                </div>
+                <div class="fileUpload btn btn-info">
+                    <!--<span>Upload</span>-->
+                    <input filestyle="" type="file" image="image"
+                           onchange="angular.element(this).scope().file_to_upload(this.files,4)"
+                           data-button-text="Single" data-class-button="btn btn-default"
+                           data-classinput="form-control inline" nv-file-select="" uploader="uploader"
+                           class="form-control upload"/>
+                </div>
+            </div>
+
+            <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                <label class="control-label">Insurance Validity</label>
+                <!--<input type="text"  class="form-control"-->
+                <!--ng-model="truck_form.rcValidity"/>-->
+                <div class="form-group">
+                    <div class="col-lg-6 padding-left" style="margin-top:14px">
+                        <p class="input-group" ng-controller="DatepickerDemoCtrl">
+                            <input placeholder="{{truck_form.validity | date:'yyyy-MM-dd' }}" type="text" datepicker-popup="{{format}}"
+                                   ng-model="x.startTime" is-open="opened"
+                                   style="background-color: #fff;cursor: pointer;"
+                                   min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"
+                                   date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"
+                                   class="form-control" readonly/>
+                                         <span class="input-group-btn">
+                                           <button type="button" ng-click="open($event)" class="btn btn-default">
+                                               <em class="fa fa-calendar"></em>
+                                           </button>
+                                         </span>
+                        </p>
+                    </div>
+                </div>
+            </div><br><br>
+        </div>
+        <div  class="panel panel-default" style="width:70%; margin-left: 15%;border-color:blue">
+            <div style="margin-top: 2%;margin-bottom: 2%"><center><button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" ng-click="close()" class="btn btn-default">Cancel
+            </button></center></div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,119 @@
+<div ng-controller="truckerDetailsController" class="content-wrapper" ng-class="{'whirl standard' : loading }">
+    <section class="content">
+        <div class="container">
+            <div class="row"   style="padding-top: 2%">
+                <div class="col-xs-6">
+                    <div class="box box-solid"  style="border: 1px solid #e0e0e0;padding:10px;background-color: white">
+                        <div  class="box-body">
+                            <strong><i class="fa fa-user margin-r-5"></i>  Driver Name & ID</strong>
+                            <p class="text-muted">
+                                {{name}} ( {{driverId}} )
+                            </p>
+                            <hr>
+                            <strong><i class="fa fa-phone margin-r-5"></i> Driver's Contact No.</strong>
+                            <p class="text-muted">
+                                 {{phoneNumber}}
+                            </p>
+                            <hr>
+                            <strong><i class="fa fa-envelope margin-r-5"></i>  Driver's Address</strong>
+                            <p class="text-muted">
+                                {{address}}
+                            </p>
+                            <hr>
+                            <strong><i class="fa fa-calendar margin-r-5"></i>  Registration Date</strong>
+                            <p class="text-muted">
+                                {{date }}
+                            </p>
+                            <hr>
+
+
+
+                            <strong><i class="fa fa-envelope margin-r-5"></i>  Fleet Owner's Email</strong>
+                            <p class="text-muted">
+                                {{fleet_email}}
+                            </p>
+                            <hr>
+                            <strong><i class="fa fa-phone margin-r-5"></i> Fleet Owner's Contact No.</strong>
+                            <p class="text-muted">
+                                {{fleet_phone}}
+                            </p>
+                            <hr>
+                        </div><!-- /.box-body -->
+                    </div>
+                </div>
+
+                <div class="col-xs-5 ">
+                    <div class="row">
+                      <div class="col-xs-12 " class="box box-solid" style="height:546px;border: 1px solid #e0e0e0;padding:10px;background-color: white">
+                        <div class="box-header with-border">
+                            <h4 style="color:darkslategray"><b>Profile Image</b></h4>
+                        </div>
+                        <br><br>
+                        <div style="text-align: center;" >
+                            <img ng-src="{{profilePicture}}" ng-click="download_image(profilePicture,1)" height="400px" width="400px" >
+                        </div><!-- /.box-body -->
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="row" class="col-xs-12" style="width:1097px;padding-left:16.5px;">
+                <!--<div class="col-xs-12">-->
+                    <div class="col-xs-4 " class="box box-solid" style="height:289.633px;border: 1px solid #e0e0e0;background-color: white" >
+                        <div style="margin-top: 3%;">
+                        <strong > Driver's Licence Validity</strong>
+                        <p class="text-muted">
+                            {{drivingLicenseNo}}
+                        </p>
+                        <hr>
+                        </div>
+                        <div class="box-header with-border">
+                            <h4 style="color:darkslategray"><b>Driving Licence</b></h4>
+                        </div>
+                        <div style="text-align: center">
+                            <img ng-src="{{drivingLicenseDoc}}" ng-click="download_image(drivingLicenseDoc,2)" height="150px" width="150px" >
+                        </div><!-- /.box-body -->
+                    </div>
+                    <div class="col-xs-4 " class="box box-solid" style="border: 1px solid #e0e0e0;padding:10px;background-color: white">
+
+                        <strong> Driver's VoterId No.</strong>
+                        <p class="text-muted">
+                            {{VoterIdNo}}
+                        </p>
+                        <hr>
+                        <div class="box-header with-border">
+                            <h4 style="color:darkslategray"><b>Voter Id Doc</b></h4>
+                        </div>
+                        <div style="text-align: center">
+                            <img ng-src="{{VoterIdDoc}}" ng-click="download_image(VoterIdDoc,3)" height="150px" width="150px" >
+                        </div><!-- /.box-body -->
+                    </div>
+                    <div class="col-xs-4 " class="box box-solid" style="border: 1px solid #e0e0e0;padding:10px;background-color: white">
+
+                        <strong> Driver's Adhar No.</strong>
+                        <p class="text-muted">
+                            {{adharCardNo}}
+                        </p>
+                        <hr>
+                        <div class="box-header with-border">
+                            <h4 style="color:darkslategray"><b>Adhar Card Doc </b></h4>
+                        </div>
+                        <div style="text-align: center">
+
+                            <img ng-src="{{adharCardDoc}}" ng-click="download_image(adharCardDoc,4)" height="150px" width="150px" >
+                        </div><!-- /.box-body -->
+                    </div>
+                <!--</div>-->
+            </div>
+        </div>
+    </section>
+
+    <script type="text/ng-template" id="modalDialog">
+        <!--<img ng-src="{{pop.image}}" ng-model="pop.image" style="height:400px;width:400px" />-->
+        Download to view file..!
+        <a target="_self" href="{{pop.image}}" download="image.png" style="text-decoration: none;color:white" >
+            <button class="btn btn-sm btn-primary"> Download</button>
+        </a>
+        </center></script>
+</div>
+<!-- /trucker details-->

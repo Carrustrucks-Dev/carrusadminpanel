@@ -1,0 +1,95 @@
+<span ng-controller="UpcomingController">
+     <div style="float: right;" class="col-md-1">
+         <button class='btn btn-success custom_color' style="float:right" ng-click="refresh()"><em class="fa fa-refresh"></em></button>
+     </div>
+
+    <div style="float: right;" class="col-md-1">
+        <button class='btn btn-success custom_color' style="float:right" ng-click="exportExcel()">Download Data</button>
+    </div>
+<h3>Shipments
+    <div class="container-fluid"></div>
+    <small>Get all Upcoming Shipments</small>
+</h3>
+
+    <!-- START DATATABLE 2 -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default" ng-class="{'whirl standard' : loading }">
+                <div class="table-responsive">
+                    <table id="datatable3" class="table table-striped table-hover"
+                           >
+                        <thead>
+                        <tr>
+                            <th style="min-width: 15px;text-align:center; width:20px;!important; " >Sr no.</th>
+                            <th style="min-width: 150px;text-align:center" >Shipper Name</th>
+                            <th style="min-width: 150px;text-align:center" >Email</th>
+                            <th style="min-width: 15px;text-align:center" >Rating </th>
+                            <th style="min-width: 150px;text-align:center" >Tracking Available</th>
+                            <th style="min-width: 150px;text-align:center" >Driver Name</th>
+                            <!--<th>Profile Pic</th>-->
+                            <th style="min-width: 150px;text-align:center" >Pickup Details</th>
+                            <th style="min-width: 150px;text-align:center" >Pickup Address</th>
+                            <th style="min-width: 150px;text-align:center" >Dropoff Details</th>
+                            <th style="min-width: 150px;text-align:center" >Dropoff Address</th>
+                            <th style="min-width: 150px;text-align:center" >Pickup Time</th>
+                            <th style="min-width: 150px;text-align:center" >Dropoff Time</th>
+                            <th style="min-width: 15px;text-align:center" >Final Cost</th>
+                            <th style="min-width: 150px;text-align:center" >Type of Cargo</th>
+                            <th style="min-width: 150px;text-align:center" >Weight of Cargo</th>
+                            <th style="min-width: 150px;text-align:center">Type of Truck</th>
+                            <th style="min-width: 15px;text-align:center">Truck Number</th>
+                            <th style="min-width: 150px;text-align:center">Status</th>
+                            <th style="min-width: 150px;text-align:center">Payment Mode</th>
+                            <th style="min-width: 150px;text-align:center">Promo Code</th>
+                            <th style="min-width: 150px;text-align:center">Consignment Note</th>
+                            <th style="min-width: 150px;text-align:center">POD</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="data in list ">
+
+                            <td style="white-space:nowrap;"><a class="link_color">{{$index + 1}}</a>
+                            </td>
+                            <td style="white-space:nowrap;"><a class="link_color" >{{data.firstName}}</a>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.email}}</a></td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.rating}}</a>
+                            </td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.tracking}}</a></td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.driverName}}<br><img ng-src="{{data.profilePicture || 'app/img/no_image.png'}}" ng-click="zoom_profile(data)" style="width:100px;height:100px" /></a></td>
+                            <!--<td style="white-space:nowrap;"><a class="link_color"><img ng-src="{{data.profilePicture||'app/img/no_image.png'}}" style="width:100px;height:100px" /> </a></td>-->
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.pickUp}}</a></td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.pickaddress}}</a>
+                            </td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.dropOff}}</a></td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.dropoffaddress}}</a></td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.pickuptime}}</a></td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.dropofftime}}</a></td>
+
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.acceptPrice}}</a></td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.cargoType}}</a></td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.weight}}</a></td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.truckType}}</a></td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.truckNumber}}</a></td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.bookingStatus}}</a></td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.paymentMode}}</a></td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.promoCode}}</a></td>
+                            <td style="white-space:nowrap;"><a class="link_color"><img ng-src="{{data.consigmentNote}}" style="width:100px;height:100px" ng-click="zoom_consign(data)" /> </a></td>
+                            <td style="white-space:nowrap;"><a class="link_color"><img ng-src="{{data.pod }}" style="width:100px;height:100px" ng-click="zoom_consign(data)"/> </a></td>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END DATATABLE 2 -->
+  <script type="text/ng-template" id="modalDialog">
+      <img ng-src="{{pop.image}}" ng-model="pop.image" style="height:400px;width:400px"/>
+      <br><br>
+      <center><button class="btn btn-sm btn-primary"><a target="_self" href="{{pop.image}}" download="image.png" style="text-decoration: none;color:white"> Download </a></button>
+      </center></script>
+</div>
+    </span>

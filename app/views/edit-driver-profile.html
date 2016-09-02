@@ -1,0 +1,129 @@
+<div ng-controller="EditDriverProfileController">
+    <center><h3 style="color: black">Edit Driver Profile</h3></center>
+
+    <form id="add-service" ng-submit="EditService(driver_form)">
+        <div ng-class="{'whirl standard' : loading }" class="panel panel-default"
+             style="width:70%; margin-left: 15%;border-color:blue">
+
+            <div style="padding-left: 3%; padding-right:20px; margin-top:2%;" class="form-group">
+                <label class="control-label">Driver name*</label>
+                <input type="text"  class="form-control"
+                       ng-model="driver_form.driverName"/>
+            </div>
+            <div style="padding-left: 2.4%; padding-right:20px;" class="form-group">
+                <label class="control-label">Driver Contact Details*</label>
+                <input type="text"  class="form-control"
+                       ng-model="driver_form.driverphoneNumber"/>
+            </div>
+            <div style="padding-left: 2.4%; padding-right:20px;" class="form-group">
+                <label class="control-label">Driving License Validity*</label>
+                <!--<input type="text"  class="form-control"-->
+                <!--ng-model="truck_form.ttValidity"/>-->
+                <div class="form-group">
+                    <div class="col-lg-6 padding-left" style="padding-left: .4%; margin-top:1%">
+                        <p class="input-group" ng-controller="DatepickerDemoCtrl">
+                            <input  placeholder="{{driver_form.drivingLicenseValidity | date:'yyyy-MM-dd' }}" type="text"
+                                   datepicker-popup="{{format}}"
+                                   ng-model="x.startTime" is-open="opened"
+                                   style="background-color:white;cursor: pointer; "
+                                   min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"
+                                   date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"
+                                   class="form-control" readonly/>
+                                         <span class="input-group-btn">
+                                           <button type="button" ng-click="open($event)" class="btn btn-default">
+                                               <em class="fa fa-calendar"></em>
+                                           </button>
+                                         </span></p>
+                    </div>
+                </div>
+            </div><br><br>
+            <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                <label class="control-label">Address</label>
+                <input type="text" class="form-control"
+                       ng-model="driver_form.address"/>
+            </div>
+
+            <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                <label class="control-label">Driving License Number</label>
+                <input type="text" class="form-control"
+                       ng-model="driver_form.drivingLicenseNo"/>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" style="text-align: left; margin-left:20px">Driving License Doc</label>
+
+                <!---->
+                <div class="form-group" style="text-align: left; margin-left:90px">
+                    <img class='uploaded_img' ng-src={{driver_form.license_html_image}} style="width:200px;height:200px"
+                         id="license_image"/>
+                </div>
+                <div class="fileUpload btn btn-info">
+                    <input filestyle="" type="file" image="image"
+                           onchange="angular.element(this).scope().file_to_upload(this.files,1)"
+                           data-button-text="Single" data-class-button="btn btn-default"
+                           data-classinput="form-control inline" nv-file-select="" uploader="uploader"
+                           class="form-control upload"/>
+                </div>
+                <br>
+            </div>
+
+
+            <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                <label class="control-label">Voter Id Number</label>
+                <input type="text" class="form-control"
+                       ng-model="driver_form.voteridNo"/>
+            </div>
+            <div class="form-group">
+                <label class="control-label" style="text-align: left; margin-left:20px">Voter Id Doc</label>
+
+
+                <div class="form-group" style="text-align: left; margin-left:90px">
+                    <img class='uploaded_img' ng-src={{driver_form.voterid_html_image}} style="width:200px;height:200px"
+                         id="voter_image"/>
+                </div>
+                <div class="fileUpload btn btn-info">
+
+                    <input filestyle="" type="file" image="image"
+                           onchange="angular.element(this).scope().file_to_upload(this.files,2)"
+                           data-button-text="Single" data-class-button="btn btn-default"
+                           data-classinput="form-control inline" nv-file-select="" uploader="uploader"
+                           class="form-control upload"/>
+                </div>
+                <br>
+            </div>
+
+            <div style="padding-left: 20px; padding-right:20px;" class="form-group">
+                <label class="control-label">Adhar Card Number</label>
+                <input type="text" class="form-control"
+                       ng-model="driver_form.adharcardNo"/>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" style="text-align: left; margin-left:20px">Adhar Card Doc</label>
+
+                <!---->
+                <div class="form-group" style="text-align: left; margin-left:90px">
+                    <img class='uploaded_img' ng-src={{driver_form.adhar_html_image}} style="width:200px;height:200px"
+                         id="adhar_image"/>
+                </div>
+                <div class="fileUpload btn btn-info">
+                    <input style="margin-bottom: 2px;" filestyle="" type="file" image="image"
+                           onchange="angular.element(this).scope().file_to_upload(this.files,3)"
+                           data-button-text="Single" data-class-button="btn btn-default"
+                           data-classinput="form-control inline" nv-file-select="" uploader="uploader"
+                           class="form-control upload"/>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="panel panel-default" style="width:70%; margin-left: 15%;border-color:blue">
+            <div style="margin-top: 2%;margin-bottom: 2%">
+                <center>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" ng-click="close()" class="btn btn-default">Cancel
+                    </button>
+                </center>
+            </div>
+        </div>
+    </form>
+</div>

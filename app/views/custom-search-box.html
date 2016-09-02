@@ -1,0 +1,23 @@
+<div class="col-xs-6" ng-show="pageLoaded">
+    <label>
+        <select class="form-control input-sm" ng-model="$parent.page_length" ng-change="getCustomerList(1)">
+            <option ng-repeat="option in options" value="{{option}}">{{option}}</option>
+        </select>
+    </label>
+</div>
+<div class="col-xs-6" ng-show="searchPaging">
+    <label>
+        <select class="form-control input-sm" ng-model="$parent.page_length" ng-change="searchResults(0,page_length,1)">
+            <option ng-repeat="option in options" value="{{option}}">{{option}}</option>
+        </select>
+    </label>
+</div>
+<div class="col-xs-6" ng-show="pageLoaded || searchPaging">
+    <div class="dataTables_filter">
+        <label>
+            Search all columns:
+            <input type="search" class="form-control input-sm" ng-model="$parent.search" />
+            <button type="button" class="btn" ng-click="search_data($parent.search)">Search</button>
+        </label>
+    </div>
+</div>

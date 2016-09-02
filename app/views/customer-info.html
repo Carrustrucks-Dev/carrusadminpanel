@@ -1,0 +1,232 @@
+<h3>Customer Info
+    <small>Get customer information</small>
+</h3>
+<div ng-controller="CustomerInfoController" class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default customer_details_div" ng-class="{'whirl line grow' : loading_image }">
+                <img class="image_customer left" src="{{data.image}}">
+
+                <div class="customer_details left">
+                      <p class="mb-sm" >{{data.first_name || 'Customer'}}</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-sm">
+                            <em class="fa fa-envelope fa-fw"></em>{{customer.email || 'Customer Email'}}
+                        </li>
+                        <li class="mb-sm">
+                            <em class="fa fa-phone fa-fw"></em>{{customer.phone || '(99999)-999-999'}}
+                        </li>
+                    </ul>
+                </div>
+
+                <!--div class="customer_details right">
+                    <!--<p class="mb-sm" > {{customer.skin_type || 'Customer Skin Type'}}</p>-->
+                    <!--<ul class="list-unstyled">-->
+                        <!--li class="mb-sm">
+                            <p class="fa ">Skin type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    :</p>   {{customer.skin_type || 'Customer Skin Type'}}
+                        </li>
+                        <li class="mb-sm">
+                            <p class="fa ">Hair Texture :</p>  {{customer.texture || 'Customer Hair Texture'}}
+                       </li>
+                        <li class="mb-sm">
+                            <p class="fa">Hair Length&nbsp;&nbsp;  :</p>  {{customer.hair_length || 'Customer Hair Length'}}
+                        </li>
+                    <!--</ul>-->
+                <!--/div>
+                <div class="clear"></div>
+
+            </div>
+        </div>
+    </div-->
+
+
+    <!-- START DATATABLE 2 -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="table-responsive">
+                    <table id="datatable2" class="table table-striped table-hover" style="width: 100%;"
+                           ng-class="{'whirl standard' : loading }">
+                        <thead>
+                        <tr>
+                            <th style="width:5px">Sno.</th>
+                            <th style="width:5px">Order Id</th>
+                            <th style="width:100px">Driver's Id</th>
+                            <th style="width:80px; ">Colour Code</th>
+                            <th style="width:100px">Car</th>
+                            <th style="width:36px">Model</th>
+                            <th style="width:36px">license PlateNo.</th>
+                            <th style="width:36px">Rating</th>
+
+                            <!--<th style="width:65px">Comments</th>-->
+                            <!--<th style="width:65px">Last Booking Date</th>-->
+                            <!--<th style="width:65px">Last Stylist Booked</th>-->
+                            <!--<th style="width:65px">Total Number of Bookings</th>-->
+                            <!--<th style="width:65px">Total Number of Services</th>-->
+                            <!--<th style="width:65px">Total Booking Value</th>-->
+                            <!--<th style="width:65px">Total Discounts</th>-->
+                            <!--<th style="width:65px">Net Booking Value</th>-->
+                            <!--<th style="width:5px">#</th>-->
+                            <!--<th style="width:10px">Service Name</th>-->
+                            <!--<th style="width:55px; ">Service Date</th>-->
+                            <!--<th style="width:10px">Service Location</th>-->
+                            <!--<th style="width:10px">Start Time</th>-->
+                            <!--<th style="width:10px">End Time</th>-->
+                            <!--<th style="width:10px">Cancellation Time</th>-->
+                            <!--<th style="width:10px">Refunds</th>-->
+                            <!--<th style="width:10px">Service Cost(&#163;)</th>-->
+                            <!--<th style="width:10px">Tips(&#163;)</th>-->
+                            <!--<th style="width:10px">Artist Name</th>-->
+                            <!--<th style="width:10px">Status</th>-->
+                            <!--<th style="width:65px">User Rating</th>-->
+                            <!--<th style="width:65px">User Comments</th>-->
+                            <!--<th style="width:65px">Technician Rating</th>-->
+                            <!--<th style="width:65px">Technician Comments</th>-->
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="data in list">
+
+                            <td>{{$index + 1}}</td>
+                            <td>{{data.OrderId}}</td>
+                            <td>{{data.spId}}</td>
+                            <td>{{data.colourCode}}</td>
+                            <td>{{data.make}}</td>
+                            <td>{{data.model}}</td>
+                            <td>{{data.licensePlateNumber}}</td>
+
+
+
+                            <!--td ng-switch="data.status">
+                                <span ng-switch-when="0" class="label label-info">No Action</span>
+                                <span ng-switch-when="1" class="label label-success">Confirmed</span>
+                                <span ng-switch-when="2" class="label label-primary">Out</span>
+                                <span ng-switch-when="3" class="label label-pink">Reached</span>
+                                <span ng-switch-when="4" class="label label-danger">Started</span>
+                                <span ng-switch-when="6" class="label label-warning">Rejected</span>
+                                <span ng-switch-when="5" class="label label-success">Ended</span>
+                                <span ng-switch-when="7" class="label label-warning">Cancelled by User</span>
+                                <span ng-switch-when="8" class="label label-warning">Admin Cancelled</span>
+                            </td-->
+                            <td>
+                                <!--{{data.user_rating}}-->
+                                <rating ng-model="data.user_rating" max="5" readonly="true"
+                                        state-on="'fa fa-star text-yellow'"
+                                        state-off="'fa fa-star-o'"></rating>
+                                <span ng-class="{'label-warning': percent&lt;30, 'label-info': percent&gt;=30 &amp;&amp; percent&lt;70, 'label-success': percent&gt;=70}"
+                                      ng-show="overStar &amp;&amp; !true" class="label">{{percent}}%</span>
+                                <p></p>
+                            </td>
+                            <!--td> {{data.rating_text}}</td>
+
+                            <td>{{data.user_rating_text}}</td>
+                            <!--<td>{{data.comments}}</td>-->
+
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>
+                                <input type="text" name="filter_index" placeholder="#"
+                                       class="form-control input-sm datatable_input_col_search"/>
+                            </th>
+                            <th>
+                                <input type="text" name="filter_meal_name" placeholder="Order Id"
+                                       class="form-control input-sm datatable_input_col_search"/>
+                            </th>
+                            <th>
+                                <input type="text" name="filter_meal_description" placeholder="Driver's ID"
+                                       class="form-control input-sm datatable_input_col_search"/>
+                            </th>
+                            <th>
+                                <input type="text" name="filter_meal_description" placeholder="Colour Code"
+                                       class="form-control input-sm datatable_input_col_search"/>
+                            </th>
+                            <th>
+                                <input type="text" name="filter_meal_description" placeholder="Car"
+                                       class="form-control input-sm datatable_input_col_search"/>
+                            </th>
+                            <th>
+                                <input type="text" name="filter_meal_description" placeholder="model"
+                                       class="form-control input-sm datatable_input_col_search"/>
+                            </th>
+                            <th>
+                                <input type="text" name="filter_meal_description" placeholder="License plate no."
+                                       class="form-control input-sm datatable_input_col_search"/>
+                            </th>
+                            <th>
+                                <input type="text" name="filter_meal_description" placeholder="rating"
+                                       class="form-control input-sm datatable_input_col_search"/>
+                            </th>
+                            <!--th>
+                                <input type="text" name="filter_meal_description" placeholder="Service Cost(&#163;)"
+                                       class="form-control input-sm datatable_input_col_search"/>
+                            </th>
+                            <th>
+                                <input type="text" name="filter_meal_description" placeholder="Tips(&#163;)"
+                                       class="form-control input-sm datatable_input_col_search"/>
+                            </th>
+                            <th>
+                                <input type="text" name="filter_meal_description" placeholder="Artist Name"
+                                       class="form-control input-sm datatable_input_col_search"/>
+                            </th>
+                            <th>
+                                <input type="text" name="filter_meal_description" placeholder="Status"
+                                       class="form-control input-sm datatable_input_col_search"/>
+                            <th>
+                                <input type="text" name="filter_meal_description" placeholder="User Rating"
+                                       class="form-control input-sm datatable_input_col_search"/>
+                            </th>
+                            <th>
+                                <input type="text" name="filter_meal_description" placeholder="User Comments "
+                                       class="form-control input-sm datatable_input_col_search"/>
+                            </th>
+                            <th>
+                                <input type="text" name="filter_meal_description" placeholder="Tech Rating"
+                                       class="form-control input-sm datatable_input_col_search"/>
+                            </th>
+                            <th>
+                                <input type="text" name="filter_meal_description" placeholder="Tech Comments "
+                                       class="form-control input-sm datatable_input_col_search"/>
+                            </th>
+                            <!--<th>-->
+                                <!--<input type="text" name="filter_meal_description" placeholder="Last Booking Date"-->
+                                       <!--class="form-control input-sm datatable_input_col_search"/>-->
+                            <!--</th>-->
+                            <!--<th>-->
+                                <!--<input type="text" name="filter_meal_description" placeholder="Last Stylist Booked"-->
+                                       <!--class="form-control input-sm datatable_input_col_search"/>-->
+                            <!--</th>-->
+                            <!--<th>-->
+                                <!--<input type="text" name="filter_meal_description" placeholder="Total Number of Bookings"-->
+                                       <!--class="form-control input-sm datatable_input_col_search"/>-->
+                            <!--</th>-->
+                            <!--<th>-->
+                                <!--<input type="text" name="filter_meal_description" placeholder="Total Number of Services"-->
+                                       <!--class="form-control input-sm datatable_input_col_search"/>-->
+                            <!--</th>-->
+                            <!--<th>-->
+                                <!--<input type="text" name="filter_meal_description" placeholder="Total Booking Value"-->
+                                       <!--class="form-control input-sm datatable_input_col_search"/>-->
+                            <!--</th>-->
+                            <!--<th>-->
+                                <!--<input type="text" name="filter_meal_description" placeholder="Total Discounts"-->
+                                       <!--class="form-control input-sm datatable_input_col_search"/>-->
+                            <!--</th>-->
+                            <!--<th>-->
+                                <!--<input type="text" name="filter_meal_description" placeholder="Net Booking Value"-->
+                                       <!--class="form-control input-sm datatable_input_col_search"/>-->
+                            <!--</th>-->
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END DATATABLE 2 -->
+
+</div>

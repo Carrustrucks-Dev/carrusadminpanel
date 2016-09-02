@@ -1,0 +1,98 @@
+<span ng-controller="driversController">
+     <div style="float: right;" class="col-md-1">
+         <button class='btn btn-success custom_color' style="float:right" ng-click="refresh()"><em class="fa fa-refresh"></em></button>
+     </div>
+        <div style="float: right;" class="col-md-1">
+            <button class='btn btn-success custom_color' style="float:right" ng-click="exportExcel()">Download Data</button>
+        </div>
+<h3>Drivers
+    <small>Get all Drivers</small>
+</h3>
+    <div class="container-fluid" ng-class="{'whirl standard' : loading }" ng-controller="MapCtrl">
+        <div class="map" id="map" style="height: 350px;">
+            <!--<div class="map-container" id="map-container"></div>-->
+        </div>
+    </div>
+
+<div class="container-fluid">
+
+    <!-- START DATATABLE 2 -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="table-responsive">
+                    <table id="datatable8" class="table table-striped table-hover"
+                           >
+                        <thead>
+                        <tr>
+                            <th style="min-width: 150px;text-align:center">Sr no.</th>
+                            <th style="min-width: 150px;width: 100px;text-align:center">Driver Id</th>
+
+                            <th style="min-width: 150px;text-align:center">Driver Name</th>
+                            <th style="min-width: 150px;text-align:center">Driver's Contact Details</th>
+                            <th style="min-width: 150px;text-align:center">Created Date/Time</th>
+                            <th style="min-width: 150px;text-align:center">Fleet Owner's Contact Details</th>
+                            <th style="min-width: 150px;text-align:center">Fleet Owner's Email ID</th>
+                            <th style="min-width: 150px;text-align:center">Address</th>
+                            <th style="min-width: 150px;text-align:center">Driving License Validity</th>
+                            <th style="min-width: 150px;text-align:center">Driving License No./Image</th>
+                            <th style="min-width: 150px;text-align:center">Voter Id/Image</th>
+                            <th style="min-width: 150px;text-align:center">Adhar Card No/Image</th>
+                            <th style="min-width: 50px;text-align:center">Edit</th>
+
+                            <!--<th style="text-align:center">Action</th>-->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="data in list ">
+
+                            <td style="white-space:nowrap;"><a class="link_color">{{$index + 1}}</a>
+                            </td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.driverId1}}</a>
+                            </td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.driverName}} </a><br>
+                                <img style="height: 100px;width: 100px; border-radius: 50px" ng-src="{{data.profilePicture || 'app/img/no_image.png'}}" ng-click="zoom1(data)" />
+
+                            </td>
+                            <td style="white-space:nowrap;"><a class="link_color" >{{data.driverphoneNumber}}</a>
+                            <td style="white-space:nowrap;"><a class="link_color" >{{data.registerDate}}</a>
+
+                            <td style="white-space:nowrap;"><a class="link_color" >{{data.phoneNumber}}</a>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.email}}</a></td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.address}}</a></td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.drivingLicenseValidity}}</a></td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.drivingLicenseNo}}</a><br>
+                                <img style="height: 100px;width: 100px;" ng-src="{{data.license_html_image || 'app/img/no_image.png'}}" ng-click="zoom2(data)" />
+                            </td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.voteridNo}} </a><br>
+                                <img style="height: 100px;width: 100px; " ng-src="{{data.voterid_html_image || 'app/img/no_image.png'}}" ng-click="zoom3(data)" />
+
+                            </td>
+                            <td style="white-space:nowrap;"><a class="link_color">{{data.adharcardNo}} </a><br>
+                                <img style="height: 100px;width: 100px; " ng-src="{{data.adhar_html_image || 'app/img/no_image.png'}}" ng-click="zoom4(data)" />
+
+                            </td>
+                            <td>
+                                <div >
+                                    <a title="Edit" ui-sref="app.editDriver({driverId:'{{data.driverId}}'})" ng-click="DriverDetails(data)" class="btn btn-sm btn-success pull-ext">
+                                        <em class="fa fa-pencil-square-o"></em></a>
+                                </div>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END DATATABLE 2 -->
+    <script type="text/ng-template" id="modalDialog">
+        <!--<img ng-src="{{pop.image}}" ng-model="pop.image" style="height:400px;width:400px"/>-->
+        Download to view file..!
+
+    <center><button class="btn btn-sm btn-primary"><a target="_self" href="{{pop.image}}" download="image.png" style="text-decoration: none;color:white"> Download </a></button>
+    </center></script>
+
+</div>
+    </span>

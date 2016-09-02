@@ -1,0 +1,125 @@
+
+[
+  {
+    "text": "Dashboard",
+    "sref": "app.dashboard-new",
+    "icon": "fa fa-th-large"
+
+  },
+
+  {
+    "text": "Enquiry",
+    "sref": "app.enquiry2",
+    "icon": "fa fa-list-ul"
+
+
+  },
+  {
+    "text": "Shippers",
+    "sref": "app.shippers",
+    "icon": "fa fa-shopping-cart"
+
+
+  },
+  {
+    "text": "All Shipments",
+    "icon": "fa fa-briefcase",
+    "submenu": [
+      {
+        "text": "1. Upcoming",
+        "sref": "app.upcoming"
+      },
+      {
+        "text": "2. Ongoing",
+        "sref": "app.ongoing"
+      },
+      {
+        "text": "3. Past",
+        "sref": "app.past"
+      }
+
+    ]
+
+  },
+
+  {
+    "text": "Fleet Owners",
+
+    "icon": "fa fa-institution",
+    "submenu": [
+
+      {
+        "text": "1. New Fleet owners request",
+        "sref": "app.fleet_owners"
+      },
+
+      {
+        "text": "2. All Fleet owners",
+        "sref": "app.all_fleet_owners"
+      }
+
+    ]
+
+
+  },
+  {
+    "text": "Trucks Doc Expired",
+    "sref": "app.truckexpire",
+    "icon": "fa fa-times"
+
+  },
+  {
+    "text": "Driver Doc Expired",
+    "sref": "app.driverexpire",
+    "icon": "fa fa-times"
+
+  },
+  {
+    "text": "Trucks",
+    "sref": "app.trucks",
+    "icon": "fa fa-bus"
+
+  },
+  {
+    "text": "Drivers",
+    "sref": "app.drivers",
+    "icon": "fa fa-users"
+
+  },
+  {
+    "text": "Payments",
+    "sref": "app.payments",
+    "icon": "fa fa-inr"
+
+  },
+
+  {
+    "text": "Settings",
+    "icon": "fa fa-cog",
+    "submenu": [
+
+      {
+        "text": "1. Type Of Cargo",
+        "sref": "app.typeofcargo"
+      },
+      {
+        "text": "2. Type Of Truck ",
+        "sref": "app.typeoftruck"
+      },
+
+      {
+        "text": "3. Partnership",
+        "sref": "app.partnership"
+      }
+
+    ]
+
+  },
+  {
+    "text": "Feedback",
+    "sref": "app.feedback",
+    "icon": "fa fa-exclamation-triangle"
+
+  }
+
+]
