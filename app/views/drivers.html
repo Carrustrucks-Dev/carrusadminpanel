@@ -63,14 +63,20 @@
                             <td style="white-space:nowrap;"><a class="link_color">{{data.drivingLicenseValidity}}</a></td>
                             <td style="white-space:nowrap;"><a class="link_color">{{data.drivingLicenseNo}}</a><br>
                                 <img style="height: 100px;width: 100px;" ng-src="{{data.license_html_image || 'app/img/no_image.png'}}" ng-click="zoom2(data)" />
+                                <br>
+                                <button class="btn btn-primary" style="background-color:#49a0d5;width:95%">
+                                    <a target="_self" href="{{data.license_html_image}}" download="license.png" style="text-decoration: none;color:white">Download License </a></button>
                             </td>
                             <td style="white-space:nowrap;"><a class="link_color">{{data.voteridNo}} </a><br>
-                                <img style="height: 100px;width: 100px; " ng-src="{{data.voterid_html_image || 'app/img/no_image.png'}}" ng-click="zoom3(data)" />
+                                <img style="height: 100px;width: 100px; " ng-src="{{data.voterid_html_image || 'app/img/no_image.png'}}" ng-click="zoom3(data)" /><br>
+                                <button class="btn btn-primary" style="background-color:#49a0d5;width:95%">
+                                    <a target="_self" href="{{data.voterid_html_image}}" download="license.png" style="text-decoration: none;color:white">Download Voter ID </a></button>
 
                             </td>
                             <td style="white-space:nowrap;"><a class="link_color">{{data.adharcardNo}} </a><br>
-                                <img style="height: 100px;width: 100px; " ng-src="{{data.adhar_html_image || 'app/img/no_image.png'}}" ng-click="zoom4(data)" />
-
+                                <img style="height: 100px;width: 100px; " ng-src="{{data.adhar_html_image || 'app/img/no_image.png'}}" ng-click="zoom4(data)" /><br>
+                                <button class="btn btn-primary" style="background-color:#49a0d5;width:95%">
+                                    <a target="_self" href="{{data.adhar_html_image}}" download="license.png" style="text-decoration: none;color:white">Download Aadhar Card </a></button>
                             </td>
                             <td>
                                 <div >
